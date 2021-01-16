@@ -19,9 +19,7 @@ class Collision
     Box(int x, int y, int sX, int sY){this.x=x;this.y=y;this.sX=sX;this.sY=sY;}
     boolean check(Box b){return x+sX>=b.x-b.sX&&x-sX<=b.x+b.sX&&y+sY>=b.y-b.sY&&y-sY<=b.y+b.sY;}
     boolean check(Point b) {return x+sX>=b.x&&x-sX<=b.x&&y+sY>=b.y&&y-sY<=b.y;}
-    void show(){
-      rect(x-sX, y-sY, sX*2, sY*2);
-    }
+    void show(){rectMode(CENTER);rect(x, y, sX, sY);}
   }
   class Bubble extends Shape{int x, y, r;
     Bubble(int x, int y, int r)

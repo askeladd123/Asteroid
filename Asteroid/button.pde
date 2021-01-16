@@ -6,5 +6,5 @@ class Button
   {
     pic = new Picture(name);
   }
-  void show() {pic.show(100, 100, 400);}
+  void show() {pic.show(width/2, height/2, 400);}
 }
