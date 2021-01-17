@@ -1,5 +1,5 @@
 enum State
 {
-  MENU, OPTIONS, GAME, QUIT, PAUSE
+  MENU, OPTIONS, GAME, PAUSE
 }
 State gameState = State.MENU;

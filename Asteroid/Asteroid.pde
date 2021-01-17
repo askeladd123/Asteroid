@@ -1,4 +1,4 @@
-Button start, quit, menu, options;
+Button start, quit, menu, options, back;
 
 void setup() 
 {
@@ -11,6 +11,7 @@ void setup()
   quit = new Button("quit", 0, 80);
   menu = new Button("menu", 0, 0);
   options = new Button("options", 0, 0, -18);
+  back = new Button("back", 0, 0);
 }
 void draw()
 {
@@ -48,4 +49,8 @@ void keyPressed()
   default:
     gameState = State.MENU;
   }
+}
+void keyReleased()
+{
+  keyReleasedGame();
 }
