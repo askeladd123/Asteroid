@@ -1,4 +1,3 @@
-
 //======================================== - ========================================//
 
 //boolean check(Box a, Box b) {return a.x+a.sX>=b.x-b.sX&&a.x-a.sX<=b.x+b.sX&&a.y+a.sY>=b.y-b.sY&&a.y-a.sY<=b.y+b.sY;}

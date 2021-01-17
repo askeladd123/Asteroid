@@ -30,8 +30,6 @@ class Collision
     object = position;
   }
 //======================================== - ========================================//
-  void printTest(){textSize(10);text("x: " + object.x + ", y: " + object.y + ". ", 20, 20);}
-  
   abstract class Shape 
   {
     int x, y, offsetX, offsetY;
