@@ -10,7 +10,7 @@ void setup()
   start = new Button("start", 0, -80);
   quit = new Button("quit", 0, 80);
   menu = new Button("menu", 0, 0);
-  options = new Button("options", 0, 0);
+  options = new Button("options", 0, 0, -18);
 }
 void draw()
 {
@@ -39,25 +39,13 @@ void mousePressed()
 }
 void keyPressed()
 {
+  //finite state machine
   switch(gameState)
   {
-  case GAME: //======================================== - ========================================//
-    
-    
-    break;
-  case QUIT: //======================================== - ========================================//
-    
-    
-    break;
-  case MENU: //======================================== - ========================================// 
-    
-    break;
-  case OPTIONS: //===================================== - ========================================//
-    
-    
-    break;
+  case GAME:mousePressedGame();break;
+  case MENU:mousePressedMenu();break;
+  case OPTIONS:mousePressedOptions();break;
   default:
     gameState = State.MENU;
   }
-  
 }
