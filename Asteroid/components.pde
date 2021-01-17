@@ -10,7 +10,7 @@ class Collision
   void addShape(int x, int y, int sX, int sY) {shapeList.add(new Box(x, y, sX, sY));}
   void addShape(int x, int y, int r) {shapeList.add(new Bubble(x, y, r));}
   void addShape(int x, int y) {shapeList.add(new Point(x, y));}
-  void show(){for (Shape i : shapeList) i.show();}//funskjon som viser Collision shapes.
+  void show(){noStroke();fill(120, 0, 0);for (Shape i : shapeList) i.show();}//funskjon som viser Collision shapes.
   boolean check(Shape shape)
   {
     boolean a = false;
@@ -30,18 +30,22 @@ class Collision
     object = position;
   }
 //======================================== - ========================================//
+  void printTest(){textSize(10);text("x: " + object.x + ", y: " + object.y + ". ", 20, 20);}
+  
   abstract class Shape 
   {
     int x, y, offsetX, offsetY;
-    Shape(int x, int y)
+    Shape(int offsetX, int offsetY)
     {
-      offsetX = x - object.x;
-      offsetY = y - object.y;
+      this.x = object.x + offsetX;
+      this.y = object.y + offsetY;
+      this.offsetX = offsetX;
+      this.offsetY = offsetY;
     }
     void update() 
     {
-      x = object.x+offsetX;
-      y = object.y+offsetY;
+      x = object.x + offsetX;
+      y = object.y + offsetY;
     }
     boolean check(Shape shape)
     {
@@ -53,21 +57,21 @@ class Collision
   }
 //======================================== - ========================================//  
   class Box extends Shape {int sX, sY;
-    Box(int x, int y, int sX, int sY){super(x, y);this.x=x;this.y=y;this.sX=sX/2;this.sY=sY/2;}
-    boolean check(Box b){return x+sX>=b.x-b.sX&&x-sX<=b.x+b.sX&&y+sY>=b.y-b.sY&&y-sY<=b.y+b.sY;}
-    boolean check(Point b) {return x+sX>=b.x&&x-sX<=b.x&&y+sY>=b.y&&y-sY<=b.y;}
-    boolean check(int x, int y){return this.x+this.sX>=x&&this.x-this.sX<=x&&this.y+this.sY>=y&&this.y-this.sY<=y;}
-    void show(){rectMode(CENTER);rect(x, y, sX, sY);}
+    Box(int x, int y, int sX, int sY){super(x, y);this.sX=sX/2;this.sY=sY/2;rectMode(CENTER);}
+    boolean check(Box b){update();return x+sX>=b.x-b.sX&&x-sX<=b.x+b.sX&&y+sY>=b.y-b.sY&&y-sY<=b.y+b.sY;}
+    boolean check(Point b) {update();return x+sX>=b.x&&x-sX<=b.x&&y+sY>=b.y&&y-sY<=b.y;}
+    boolean check(int x, int y){update();return this.x+this.sX>=x&&this.x-this.sX<=x&&this.y+this.sY>=y&&this.y-this.sY<=y;}
+    void show(){rect(x, y, sX*2, sY*2);}
   }
   class Bubble extends Shape{int r;
     Bubble(int x, int y, int r)
-    {super(x, y);this.x=x;this.y=y;this.r=r;}
+    {super(x, y);this.r=r;}
     boolean check(int x, int y){return false;}
     void show(){ellipse(x, y, r, r);}
   }
   class Point extends Shape{
     Point(int x, int y)
-    {super(x, y);this.x=x;this.y=y;}
+    {super(x, y);}
     boolean check(int x, int y){return false;}
     void show()
     { //lager et kryss
